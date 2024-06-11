@@ -1,28 +1,56 @@
 package com.example.demo.persistence.entity;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "compras_productos")
+@Table(name = "compras_productos", schema = "public")
 public class ComprasProducto {
     @EmbeddedId
-    private ComprasProductoPK id;
+    private ComprasProductoId id;
 
+    @MapsId("idCompra")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_compra", nullable = false)
+    private Compra idCompra;
+
+    @MapsId("idProducto")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto idProducto;
+
+    @Column(name = "cantidad")
     private Integer cantidad;
 
-    private Double total;
+    @Column(name = "total", precision = 16, scale = 2)
+    private BigDecimal total;
 
+    @Column(name = "estado")
     private Boolean estado;
 
-    public ComprasProductoPK getId() {
+    public ComprasProductoId getId() {
         return id;
     }
 
-    public void setId(ComprasProductoPK id) {
+    public void setId(ComprasProductoId id) {
         this.id = id;
+    }
+
+    public Compra getIdCompra() {
+        return idCompra;
+    }
+
+    public void setIdCompra(Compra idCompra) {
+        this.idCompra = idCompra;
+    }
+
+    public Producto getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Producto idProducto) {
+        this.idProducto = idProducto;
     }
 
     public Integer getCantidad() {
@@ -33,11 +61,11 @@ public class ComprasProducto {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
@@ -48,4 +76,5 @@ public class ComprasProducto {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
 }

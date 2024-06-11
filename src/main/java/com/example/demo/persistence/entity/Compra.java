@@ -1,32 +1,34 @@
 package com.example.demo.persistence.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
-@Table(name = "compras")
+@Table(name = "compras", schema = "public")
 public class Compra {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_compra")
+    @ColumnDefault("nextval('compras_id_compra_seq'::regclass)")
+    @Column(name = "id_compra", nullable = false)
     private Integer idCompra;
 
-    @Column(name = "id_cliente")
-    private Integer idCliente;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idCliente", nullable = false)
+    private Cliente idCliente;
 
-    private LocalDateTime fecha;
+    @Column(name = "fecha")
+    private Instant fecha;
 
-    @Column(name = "medio_pago")
+    @Column(name = "medio_pago", length = Integer.MAX_VALUE)
     private String medioPago;
 
+    @Column(name = "comentario", length = 300)
     private String comentario;
 
+    @Column(name = "estado", length = Integer.MAX_VALUE)
     private String estado;
 
-    @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private Cliente cliente;
 
     public Integer getIdCompra() {
         return idCompra;
@@ -36,19 +38,19 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public Integer getIdCliente() {
+    public Cliente getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(Cliente idCliente) {
         this.idCliente = idCliente;
     }
 
-    public LocalDateTime getFecha() {
+    public Instant getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(Instant fecha) {
         this.fecha = fecha;
     }
 
@@ -75,4 +77,5 @@ public class Compra {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
 }

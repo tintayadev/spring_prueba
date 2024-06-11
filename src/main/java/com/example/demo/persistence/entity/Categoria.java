@@ -1,20 +1,23 @@
 package com.example.demo.persistence.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
 
 @Entity
-@Table(name = "categorias")
+@Table(name = "categorias", schema = "public")
 public class Categoria {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categoria")
+    @ColumnDefault("nextval('categorias_id_categoria_seq'::regclass)")
+    @Column(name = "id_categoria", nullable = false)
     private Integer idCategoria;
 
+    @Column(name = "descripcion", nullable = false, length = 45)
     private String descripcion;
 
-    private Boolean estado;
+    @Column(name = "estado", nullable = false)
+    private Boolean estado = false;
 
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;
@@ -50,4 +53,5 @@ public class Categoria {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
+
 }

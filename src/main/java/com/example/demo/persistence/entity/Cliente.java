@@ -1,44 +1,33 @@
 package com.example.demo.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "clientes", schema = "public")
 public class Cliente {
     @Id
-    private String id;
+    @Column(name = "id", nullable = false, length = 20)
+    private String idCliente;
 
+    @Column(name = "nombre", length = 40)
     private String nombre;
 
+    @Column(name = "apellidos", length = 100)
     private String apellidos;
 
-    private Integer celular;
+    @Column(name = "celular")
+    private BigDecimal celular;
 
+    @Column(name = "direccion", length = 80)
     private String direccion;
 
-    @Column(name = "correo_electronico")
+    @Column(name = "correo_electronico", length = 70)
     private String correoElectronico;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Compra> compras;
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -56,12 +45,20 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public Integer getCelular() {
+    public BigDecimal getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(BigDecimal celular) {
         this.celular = celular;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getCorreoElectronico() {
@@ -72,11 +69,11 @@ public class Cliente {
         this.correoElectronico = correoElectronico;
     }
 
-    public List<Compra> getCompras() {
-        return compras;
+    public String getIdCliente() {
+        return idCliente;
     }
 
-    public void setCompras(List<Compra> compras) {
-        this.compras = compras;
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
     }
 }

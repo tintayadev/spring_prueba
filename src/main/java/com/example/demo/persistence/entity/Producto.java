@@ -1,29 +1,35 @@
 package com.example.demo.persistence.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
+
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "productos", schema = "public")
 public class Producto {
     @Id
+    @ColumnDefault("nextval('productos_id_producto_seq'::regclass)")
+    @Column(name = "id_producto", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
     private Integer idProducto;
 
+    @Column(name = "nombre", length = 45)
     private String nombre;
 
     @Column(name = "id_categoria")
-    private String idCategoria;
+    private Integer idCategoria;
 
-    @Column(name = "codigo_barras")
+    @Column(name = "codigo_barras", length = 150)
     private String codigoBarras;
 
     @Column(name = "precio_venta")
     private Double precioVenta;
 
-    @Column(name = "cantidad_stock")
+    @Column(name = "cantidad_stock", nullable = false)
     private Integer cantidadStock;
 
+    @Column(name = "estado")
     private Boolean estado;
 
     @ManyToOne
@@ -46,11 +52,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getIdCategoria() {
+    public Integer getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(String idCategoria) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 
@@ -85,4 +91,13 @@ public class Producto {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
 }
