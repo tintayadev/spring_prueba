@@ -1,6 +1,6 @@
 package com.example.demo.domain.dto;
 
-public class Cliente {
+public class Client {
 
     private String idClient;
     private String name;

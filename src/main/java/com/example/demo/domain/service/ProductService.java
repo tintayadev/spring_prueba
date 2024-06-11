@@ -15,11 +15,11 @@ public class ProductService {
 
     public List<Product> getAll(){
         return productRepository.getAll();
-    };
+    }
 
     public Optional<Product> getProduct(int productId){
         return productRepository.getProduct(productId);
-    };
+    }
 
     public Optional<List<Product>> getByCategory(int categoryId){
         return productRepository.getByCategory(categoryId);
