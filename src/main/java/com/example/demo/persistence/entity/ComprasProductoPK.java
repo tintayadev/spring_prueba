@@ -4,15 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import org.hibernate.Hibernate;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class ComprasProductoId implements java.io.Serializable {
-    private static final long serialVersionUID = 5944311666771971347L;
-    @Column(name = "id_compra", nullable = false)
+public class ComprasProductoPK implements Serializable {
+    @Column(name = "id_compra")
     private Integer idCompra;
 
-    @Column(name = "id_producto", nullable = false)
+    @Column(name = "id_producto")
     private Integer idProducto;
 
     public Integer getIdCompra() {
@@ -35,7 +35,7 @@ public class ComprasProductoId implements java.io.Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ComprasProductoId entity = (ComprasProductoId) o;
+        ComprasProductoPK entity = (ComprasProductoPK) o;
         return Objects.equals(this.idCompra, entity.idCompra) &&
                 Objects.equals(this.idProducto, entity.idProducto);
     }

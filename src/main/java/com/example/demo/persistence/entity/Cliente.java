@@ -21,7 +21,7 @@ public class Cliente {
     private String apellidos;
 
     @Column(name = "celular")
-    private BigDecimal celular;
+    private Integer celular;
 
     @Column(name = "direccion", length = 80)
     private String direccion;
@@ -45,11 +45,11 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public BigDecimal getCelular() {
+    public Integer getCelular() {
         return celular;
     }
 
-    public void setCelular(BigDecimal celular) {
+    public void setCelular(Integer celular) {
         this.celular = celular;
     }
 

@@ -2,7 +2,6 @@ package com.example.demo.web.controller;
 
 import com.example.demo.domain.dto.Category;
 import com.example.demo.domain.service.CategoryService;
-import org.hibernate.annotations.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Category>> getAll() {
         return new ResponseEntity<>(categoryService.getAll(), HttpStatus.OK);
     }

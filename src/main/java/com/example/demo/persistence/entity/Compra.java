@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "compras", schema = "public")
@@ -18,7 +19,7 @@ public class Compra {
     private Cliente idCliente;
 
     @Column(name = "fecha")
-    private Instant fecha;
+    private LocalDateTime fecha;
 
     @Column(name = "medio_pago", length = Integer.MAX_VALUE)
     private String medioPago;
@@ -46,11 +47,11 @@ public class Compra {
         this.idCliente = idCliente;
     }
 
-    public Instant getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

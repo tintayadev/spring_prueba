@@ -2,19 +2,19 @@ package com.example.demo.domain.dto;
 
 public class Client {
 
-    private String idClient;
+    private String clientId;
     private String name;
     private String surname;
-    private String phone;
+    private int mobile;
     private String address;
     private String email;
 
-    public String getIdClient() {
-        return idClient;
+    public String getClientId() {
+        return clientId;
     }
 
-    public void setIdClient(String idClient) {
-        this.idClient = idClient;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public String getName() {
@@ -33,12 +33,12 @@ public class Client {
         this.surname = surname;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(int mobile) {
+        this.mobile = mobile;
     }
 
     public String getAddress() {

@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "compras_productos", schema = "public")
+@Table(name = "compras_productos")
 public class ComprasProducto {
     @EmbeddedId
-    private ComprasProductoId id;
+    private ComprasProductoPK id;
 
     @MapsId("idCompra")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -23,17 +23,17 @@ public class ComprasProducto {
     @Column(name = "cantidad")
     private Integer cantidad;
 
-    @Column(name = "total", precision = 16, scale = 2)
-    private BigDecimal total;
+    @Column(name = "total")
+    private Double total;
 
     @Column(name = "estado")
     private Boolean estado;
 
-    public ComprasProductoId getId() {
+    public ComprasProductoPK getId() {
         return id;
     }
 
-    public void setId(ComprasProductoId id) {
+    public void setId(ComprasProductoPK id) {
         this.id = id;
     }
 
@@ -61,11 +61,11 @@ public class ComprasProducto {
         this.cantidad = cantidad;
     }
 
-    public BigDecimal getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
