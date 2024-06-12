@@ -1,5 +1,7 @@
 package com.example.demo.domain.dto;
 
+import java.util.List;
+
 public class Client {
 
     private String clientId;
@@ -8,6 +10,7 @@ public class Client {
     private int mobile;
     private String address;
     private String email;
+    private List<Purchase> purchases;
 
     public String getClientId() {
         return clientId;
@@ -55,5 +58,13 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
     }
 }

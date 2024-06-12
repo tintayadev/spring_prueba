@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "categorias", schema = "public")
 public class Categoria {
     @Id
-    @ColumnDefault("nextval('categorias_id_categoria_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria", nullable = false)
     private Integer idCategoria;
 

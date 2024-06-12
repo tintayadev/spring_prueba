@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Table(name = "productos", schema = "public")
 public class Producto {
     @Id
-    @ColumnDefault("nextval('productos_id_producto_seq'::regclass)")
     @Column(name = "id_producto", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;

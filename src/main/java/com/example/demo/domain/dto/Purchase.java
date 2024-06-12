@@ -1,37 +1,37 @@
 package com.example.demo.domain.dto;
 
-import java.time.Instant;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class Purchase {
-    private Integer idPurchase;
-    private String clientId;
-    private Instant date;
+    private int idPurchase;
+    private int clientId;
+    private LocalDateTime date;
     private String paymentMethod;
     private String comment;
     private String status;
+    private Client client;
 
-    public Integer getIdPurchase() {
+    public int getIdPurchase() {
         return idPurchase;
     }
 
-    public void setIdPurchase(Integer idPurchase) {
+    public void setIdPurchase(int idPurchase) {
         this.idPurchase = idPurchase;
     }
 
-    public String getClientId() {
+    public int getClientId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setClientId(int clientId) {
         this.clientId = clientId;
     }
 
-    public Instant getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -57,5 +57,13 @@ public class Purchase {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

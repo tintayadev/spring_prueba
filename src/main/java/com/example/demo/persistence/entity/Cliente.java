@@ -1,17 +1,16 @@
 package com.example.demo.persistence.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes", schema = "public")
 public class Cliente {
     @Id
     @Column(name = "id", nullable = false, length = 20)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String idCliente;
 
     @Column(name = "nombre", length = 40)
@@ -28,6 +27,17 @@ public class Cliente {
 
     @Column(name = "correo_electronico", length = 70)
     private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
 
     public String getNombre() {
         return nombre;
@@ -69,11 +79,11 @@ public class Cliente {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getIdCliente() {
-        return idCliente;
+    public List<Compra> getCompras() {
+        return compras;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
     }
 }

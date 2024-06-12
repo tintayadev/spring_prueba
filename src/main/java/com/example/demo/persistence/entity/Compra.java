@@ -10,13 +10,12 @@ import java.time.LocalDateTime;
 @Table(name = "compras", schema = "public")
 public class Compra {
     @Id
-    @ColumnDefault("nextval('compras_id_compra_seq'::regclass)")
     @Column(name = "id_compra", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCompra;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idCliente", nullable = false)
-    private Cliente idCliente;
+    @Column(name = "id_cliente")
+    private Integer idCliente;
 
     @Column(name = "fecha")
     private LocalDateTime fecha;
@@ -30,6 +29,9 @@ public class Compra {
     @Column(name = "estado", length = Integer.MAX_VALUE)
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
 
     public Integer getIdCompra() {
         return idCompra;
@@ -39,11 +41,11 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public Cliente getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -79,4 +81,11 @@ public class Compra {
         this.estado = estado;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
